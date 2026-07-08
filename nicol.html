@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Sorpresa Galáctica para Nicol</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: url('nebula.png') no-repeat center center fixed; /* Usa tu imagen */
+      background-size: cover;
+      overflow: hidden;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+      animation: moveBg 60s linear infinite;
+    }
+
+    @keyframes moveBg {
+      0% { background-position: center; }
+      50% { background-position: top left; }
+      100% { background-position: center; }
+    }
+
+    h1 {
+      margin-top: 30px;
+      font-size: 3em;
+      animation: glow 2s infinite alternate;
+    }
+
+    p {
+      font-size: 1.5em;
+      margin: 20px;
+      animation: fadeIn 3s ease-in-out;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff; }
+      to { text-shadow: 0 0 30px #ff69b4, 0 0 50px #ff4500; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .heart, .star {
+      position: absolute;
+      font-size: 24px;
+      animation: float 3s ease-out forwards;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100px); opacity: 0; }
+    }
+
+    button {
+      margin: 10px;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 10px;
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #ff1493;
+    }
+
+    /* Carta romántica */
+    .carta {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+      backdrop-filter: blur(10px);
+      animation: aparecer 3s ease-in-out;
+    }
+
+    .carta h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #ffb6c1;
+      text-shadow: 0 0 10px #fff;
+    }
+
+    .carta p {
+      font-size: 1.2em;
+      line-height: 1.8;
+      color: #fff;
+      text-align: left;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎉 Nico mi Motivacion 🎉</h1>
+  <p>Mi querida Nico, en esta galaxia infinita eres mi estrella más brillante ✨</p>
+  <button onclick="mostrarMensaje()">Haz clic aquí 💌</button>
+  <button onclick="toggleMusic()">🎶 Música</button>
+
+  <div class="carta">
+    <h2>💌 Carta para Nicol 💌</h2>
+    <p>
+      Mi querida Nicol,<br><br>
+      En esta galaxia infinita, tú eres mi estrella más brillante.  
+      Eres una chica magica, llena de amor, ternura y felicidad.  
+      Gracias por iluminar mi vida con tu sonrisa y quiero acompañarte en cada instante.  
+      <br><br>
+      Con todo mi amor,<br>
+      Jake 💕
+    </p>
+  </div>
+
+  <script>
+    // Música de fondo
+    const audio = new Audio('musica.mp3'); // coloca tu archivo en la misma carpeta
+    audio.loop = true;
+    audio.autoplay = true;
+    audio.volume = 0.5; // volumen moderado
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
+      }
+    }
+
+    // Crear corazones flotando iniciales
+    function crearCorazones() {
+      for (let i = 0; i < 20; i++) {
+        let heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = "❤️";
+        heart.style.left = Math.random() * window.innerWidth + 'px';
+        heart.style.top = Math.random() * window.innerHeight + 'px';
+        heart.style.animationDuration = (5 + Math.random() * 5) + 's';
+        document.body.appendChild(heart);
+      }
+    }
+
+    crearCorazones();
+
+    // Animación al hacer clic
+    function mostrarMensaje() {
+      alert("💖Eres la mas bella Nicol 💖");
+      lanzarEstrellasYCorazones();
+    }
+
+    function lanzarEstrellasYCorazones() {
+      for (let i = 0; i < 15; i++) {
+        let elemento = document.createElement('div');
+        elemento.className = Math.random() > 0.5 ? 'heart' : 'star';
+        elemento.innerHTML = elemento.className === 'heart' ? "💖" : "✨";
+        elemento.style.left = (window.innerWidth / 2 + (Math.random() * 200 - 100)) + 'px';
+        elemento.style.top = (window.innerHeight / 2) + 'px';
+        document.body.appendChild(elemento);
+
+        setTimeout(() => {
+          elemento.remove();
+        }, 3000);
+      }
+    }
+  </script>
+</body>
+</html>
